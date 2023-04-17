@@ -4,7 +4,7 @@ import ErrorAlert from '../components/ErrorAlert';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import axios from 'axios';
-import Post from './Post';
+import DeletePost from '../components/DeletePost';
 
 const Posts = () => {
 	const [posts, setPosts] = useState([]);
@@ -42,8 +42,11 @@ const Posts = () => {
 							// </p>
 							<div key={id}>
 								<Link className="hover:underline" to={`/posts/${id}`}>
-									{title}
+									{id} : {title}
 								</Link>
+								<div>
+									<DeletePost id={id} />
+								</div>
 							</div>
 						);
 					})}

@@ -1,7 +1,17 @@
-const DeletePost = () => {
+/* eslint-disable react/prop-types */
+import axios from 'axios';
+
+const DeletePost = ({ id }) => {
+	const url = `http://localhost:3001/v1/api/posts/${id}`;
+
+	const deletePost = async () => {
+		axios.delete(url).then(function (response) {
+			console.log(response);
+		});
+	};
 	return (
 		<>
-			<h1>DELETE POST</h1>
+			<button onClick={deletePost}>DELETE POST</button>
 		</>
 	);
 };

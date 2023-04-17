@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import UpdatePost from '../components/UpdatePost';
 import { useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
+import DeletePost from '../components/DeletePost';
 
 const Post = () => {
 	const { id } = useParams();
@@ -49,6 +50,8 @@ const Post = () => {
 							content={postData.content}
 						/>
 					</Popup>
+					<br />
+					<DeletePost id={postData.id} />
 				</div>
 			)}
 		</Container>
