@@ -37,9 +37,6 @@ const Posts = () => {
 					Posts:
 					{posts.map(({ id, title }) => {
 						return (
-							// <p role="button" onClick={() => fetchPostHandler(id)} key={id}>
-							// 	{id} - {title}
-							// </p>
 							<div key={id}>
 								<Link className="hover:underline" to={`/posts/${id}`}>
 									{id} : {title}

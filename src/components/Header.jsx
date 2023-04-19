@@ -23,7 +23,7 @@ const Header = () => {
 				<RouterLink className={getClassName} to="/posts">
 					Posts
 				</RouterLink>
-				<Popup trigger={<button>Create Post</button>} position={'right center'}>
+				<Popup trigger={<button>Create Post</button>} position={'right'}>
 					<CreatePost />
 				</Popup>
 			</nav>

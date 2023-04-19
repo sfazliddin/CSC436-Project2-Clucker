@@ -39,9 +39,19 @@ const CreatePost = () => {
 	return (
 		<form onSubmit={submit}>
 			{responseOutput}
-			<input type="text" value={title} onChange={updateTitle} />
-			<input type="text" value={content} onChange={updateContent} />
-			<input type="submit" />
+			<input
+				className="border-2 border-red-200"
+				type="text"
+				value={title}
+				onChange={updateTitle}
+			/>
+			<input
+				className="mx-5 border-2 border-red-200"
+				type="text"
+				value={content}
+				onChange={updateContent}
+			/>
+			<input className=" bg-blue-600" type="submit" />
 		</form>
 	);
 };

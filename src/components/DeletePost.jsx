@@ -11,7 +11,9 @@ const DeletePost = ({ id }) => {
 	};
 	return (
 		<>
-			<button onClick={deletePost}>DELETE POST</button>
+			<button className="rounded-full bg-red-600 p-3" onClick={deletePost}>
+				DELETE POST
+			</button>
 		</>
 	);
 };

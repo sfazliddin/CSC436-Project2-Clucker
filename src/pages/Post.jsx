@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
+
 import axios from 'axios';
 import Container from '../components/Container';
-// import { format } from 'date-fns';
+import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import UpdatePost from '../components/UpdatePost';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import DeletePost from '../components/DeletePost';
 
@@ -24,40 +25,63 @@ const Post = () => {
 				setPostData(data);
 			})
 			.catch((error) => {
-				// setError(error);
+				//setError(error);
 			})
 			.finally(() => {
 				setLoading(false);
 			});
 	}, [id]);
 
+	const navigate = useNavigate();
+	const clickHandler = () => {
+		navigate('/posts', { replace: true });
+	};
+
 	return (
 		<Container>
 			{!!loading && <p>Loading Post Data</p>}
 			{!loading && !!postData && (
 				<div>
-					{/* <button onClick={setListMode}>Return to List</button> */}
+					<button onClick={clickHandler}>Go Back</button>
 					<hr />
 					<p>Title: {postData.title}</p>
 					<p>Content: {postData.content}</p>
-					<p>Last Updated: {postData.last_updated}</p>
-					<p>Publish Date: {postData.originally_published}</p>
 
-					<Popup trigger={<button>Edit Post</button>} position={'right center'}>
-						<UpdatePost
-							id={postData.id}
-							title={postData.title}
-							content={postData.content}
-						/>
-					</Popup>
-					<br />
-					<DeletePost id={postData.id} />
+					<p>
+						Last Updated:{' '}
+						{format(new Date(postData.last_updated), 'MM/dd/yyyy').slice(0, 10)}{' '}
+						{postData.last_updated.slice(11, 19)}
+					</p>
+					<p>
+						Publish Date:{' '}
+						{format(
+							new Date(postData.originally_published.slice(0, 10)),
+							'MM/dd/yyyy'
+						)}{' '}
+						{postData.originally_published.slice(11, 19)}
+					</p>
+					<div className="flex">
+						<div className="flex-initial w-10/12">
+							<Popup
+								trigger={
+									<button className="rounded-full bg-green-600 p-3">Edit Post</button>
+								}
+								position={'right center'}
+							>
+								<UpdatePost
+									id={postData.id}
+									title={postData.title}
+									content={postData.content}
+								/>
+							</Popup>
+						</div>
+
+						<DeletePost id={postData.id} />
+					</div>
 				</div>
 			)}
 		</Container>
 	);
 };
-//{"id":8,"title":"test for time","content":"date:april 12, time:12:17pm","last_updated":"2023-04-12T16:17:14.410Z","originally_published":"2023-04-12T16:17:14.410Z"}]
-//id,title,content,last_updated,originally_published
 
 export default Post;

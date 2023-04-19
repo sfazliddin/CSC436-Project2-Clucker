@@ -44,7 +44,7 @@ const UpdatePost = ({ title, content, id }) => {
 			{responseOutput}
 			<input type="text" value={currentTitle} onChange={updateTitle} />
 			<input type="text" value={currentContent} onChange={updateContent} />
-			<input type="submit" />
+			<input className="rounded-full bg-blue-600 p-3" type="submit" />
 		</form>
 	);
 };
